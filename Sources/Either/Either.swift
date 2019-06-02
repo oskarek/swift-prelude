@@ -55,7 +55,7 @@ public func hush<L, R>(_ lr: Either<L, R>) -> R? {
 }
 
 public extension Either where L == Error {
-  public static func wrap<A>(_ f: @escaping (A) throws -> R) -> (A) -> Either {
+  static func wrap<A>(_ f: @escaping (A) throws -> R) -> (A) -> Either {
     return { a in
       do {
         return .right(try f(a))
@@ -65,7 +65,7 @@ public extension Either where L == Error {
     }
   }
 
-  public static func wrap(_ f: @escaping () throws -> R) -> Either {
+  static func wrap(_ f: @escaping () throws -> R) -> Either {
     do {
       return .right(try f())
     } catch let error {
@@ -73,13 +73,13 @@ public extension Either where L == Error {
     }
   }
 
-  public func unwrap() throws -> R {
+  func unwrap() throws -> R {
     return try either({ throw $0 }, id)
   }
 }
 
 public extension Either where L: Error {
-  public func unwrap() throws -> R {
+  func unwrap() throws -> R {
     return try either({ throw $0 }, id)
   }
 }
