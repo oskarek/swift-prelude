@@ -1,0 +1,3 @@
+github "pointfreeco/swift-nonempty" ~> 0.2
+github "pointfreeco/swift-tagged" ~> 0.4
+github "pointfreeco/swift-snapshot-testing" ~> 1.5
